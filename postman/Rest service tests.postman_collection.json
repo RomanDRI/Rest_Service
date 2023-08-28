@@ -1,0 +1,1355 @@
+{
+	"info": {
+		"_postman_id": "f96105fa-5d17-4d1a-8ff4-287556a42d4b",
+		"name": "Rest service tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27897781"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Авторизация пользователя",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "user",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "user",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:9966/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9966",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Добавление новой заявки",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {",
+									"    pm.response.to.have.status(201);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"const source = JSON.parse(pm.request.body.raw);",
+									"const target = pm.response.json();",
+									"",
+									"pm.test(\"Заявка должна содержать поля: id, name, userMessage, user, state, createdOn\", function () {",
+									"pm.expect(target).to.have.property('id');",
+									"pm.expect(target).to.have.property('name');",
+									"pm.expect(target).to.have.property('userMessage');",
+									"pm.expect(target).to.have.property('user');",
+									"pm.expect(target).to.have.property('state');",
+									"pm.expect(target).to.have.property('createdOn');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"name\": \"new request\",\n   \"userMessage\": \"new user request\",\n   \"user\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9966/users/:userId/requests",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9966",
+							"path": [
+								"users",
+								":userId",
+								"requests"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "1",
+									"description": "user id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Добавление заявки 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {",
+									"    pm.response.to.have.status(201);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"const source = JSON.parse(pm.request.body.raw);",
+									"const target = pm.response.json();",
+									"",
+									"pm.test(\"Заявка должна содержать поля: id, name, userMessage, user, state, createdOn\", function () {",
+									"pm.expect(target).to.have.property('id');",
+									"pm.expect(target).to.have.property('name');",
+									"pm.expect(target).to.have.property('userMessage');",
+									"pm.expect(target).to.have.property('user');",
+									"pm.expect(target).to.have.property('state');",
+									"pm.expect(target).to.have.property('createdOn');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"name\": \"new request 2\",\n   \"userMessage\": \"new user request 2\",\n   \"user\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9966/users/:userId/requests",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9966",
+							"path": [
+								"users",
+								":userId",
+								"requests"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "1",
+									"description": "user id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Добавление заявки 3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {",
+									"    pm.response.to.have.status(201);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"const source = JSON.parse(pm.request.body.raw);",
+									"const target = pm.response.json();",
+									"",
+									"pm.test(\"Заявка должна содержать поля: id, name, userMessage, user, state, createdOn\", function () {",
+									"pm.expect(target).to.have.property('id');",
+									"pm.expect(target).to.have.property('name');",
+									"pm.expect(target).to.have.property('userMessage');",
+									"pm.expect(target).to.have.property('user');",
+									"pm.expect(target).to.have.property('state');",
+									"pm.expect(target).to.have.property('createdOn');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"name\": \"new request 3\",\n   \"userMessage\": \"new user request 3\",\n   \"user\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9966/users/:userId/requests",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9966",
+							"path": [
+								"users",
+								":userId",
+								"requests"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "1",
+									"description": "user id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Добавление заявки 4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {",
+									"    pm.response.to.have.status(201);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"name\": \"new request 4\",\n   \"userMessage\": \"new user request 4\",\n   \"user\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9966/users/:userId/requests",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9966",
+							"path": [
+								"users",
+								":userId",
+								"requests"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "1",
+									"description": "user id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Добавление заявки 5",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {",
+									"    pm.response.to.have.status(201);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"name\": \"new request 5\",\n   \"userMessage\": \"new user request 5\",\n   \"user\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9966/users/:userId/requests",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9966",
+							"path": [
+								"users",
+								":userId",
+								"requests"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "1",
+									"description": "user id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Редактирование заявки пользователем",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 200 и данные в формате json\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"const source = JSON.parse(pm.request.body.raw);",
+									"const target = pm.response.json();",
+									"",
+									"pm.test(\"Заявка должна содержать поля: id, name, userMessage, user, state, createdOn\", function () {",
+									"pm.expect(target).to.have.property('id');",
+									"pm.expect(target).to.have.property('name');",
+									"pm.expect(target).to.have.property('userMessage');",
+									"pm.expect(target).to.have.property('user');",
+									"pm.expect(target).to.have.property('state');",
+									"pm.expect(target).to.have.property('createdOn');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"name\": \"new request update\",\n   \"userMessage\": \"new test request new test request\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9966/users/:userId/requests/:reqId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9966",
+							"path": [
+								"users",
+								":userId",
+								"requests",
+								":reqId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "1",
+									"description": "user Id  "
+								},
+								{
+									"key": "reqId",
+									"value": "1",
+									"description": "request Id "
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Отправка заявки на рассмотрение оператору",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 200 и данные в формате json\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"const source = JSON.parse(pm.request.body.raw);",
+									"const target = pm.response.json();",
+									"",
+									"pm.test(\"Заявка должна содержать поля: id, name, userMessage, user, state, createdOn\", function () {",
+									"pm.expect(target).to.have.property('id');",
+									"pm.expect(target).to.have.property('name');",
+									"pm.expect(target).to.have.property('userMessage');",
+									"pm.expect(target).to.have.property('user');",
+									"pm.expect(target).to.have.property('state');",
+									"pm.expect(target).to.have.property('createdOn');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"name\": \"new request update\",\n   \"userMessage\": \"new test request new test request\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9966/users/:userId/requests/:reqId/sent",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9966",
+							"path": [
+								"users",
+								":userId",
+								"requests",
+								":reqId",
+								"sent"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "1",
+									"description": "user id"
+								},
+								{
+									"key": "reqId",
+									"value": "1",
+									"description": "request id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Попытка редактирования заявки отправленной на рассмотрение",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 409 и данные в формате json\", function () {",
+									"    pm.response.to.have.status(409);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"name\": \"new request update\",\n   \"userMessage\": \"new test request new test request\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9966/users/:userId/requests/:reqId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9966",
+							"path": [
+								"users",
+								":userId",
+								"requests",
+								":reqId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "1",
+									"description": "user id"
+								},
+								{
+									"key": "reqId",
+									"value": "1",
+									"description": "request id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Отправка заявки 4 на рассмотрение оператору",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 200 и данные в формате json\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"name\": \"new request update\",\n   \"userMessage\": \"new test request new test request\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9966/users/:userId/requests/:reqId/sent",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9966",
+							"path": [
+								"users",
+								":userId",
+								"requests",
+								":reqId",
+								"sent"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "1",
+									"description": "user id"
+								},
+								{
+									"key": "reqId",
+									"value": "4",
+									"description": "request id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Отправка заявки 5 на рассмотрение оператору",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 200 и данные в формате json\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"name\": \"new request update\",\n   \"userMessage\": \"new test request new test request\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9966/users/:userId/requests/:reqId/sent",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9966",
+							"path": [
+								"users",
+								":userId",
+								"requests",
+								":reqId",
+								"sent"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "1",
+									"description": "user id"
+								},
+								{
+									"key": "reqId",
+									"value": "5",
+									"description": "request id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Просмотр заявок пользователя с сортировкой по дате от старой к новой",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 200 и данные в формате json\", function () {",
+									"    pm.response.to.be.ok;    ",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"const source = pm.collectionVariables.get('response');",
+									"const target = pm.response.json();",
+									"",
+									"pm.test(\"Должно быть найдено пять заявок\", function () {",
+									"    pm.expect(target.length).to.eql(5);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9966/users/:userId/requests/new?from=0&size=5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9966",
+							"path": [
+								"users",
+								":userId",
+								"requests",
+								"new"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "5"
+								}
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "1",
+									"description": "user id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Просмотр заявок пользователя с сортировкой по дате от новой к старой",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 200 и данные в формате json\", function () {",
+									"    pm.response.to.be.ok;    ",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"const source = pm.collectionVariables.get('response');",
+									"const target = pm.response.json();",
+									"",
+									"pm.test(\"Должно быть найдено пять заявок\", function () {",
+									"    pm.expect(target.length).to.eql(5);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9966/users/:userId/requests/old?from=0&size=5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9966",
+							"path": [
+								"users",
+								":userId",
+								"requests",
+								"old"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "5"
+								}
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "1",
+									"description": "user id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Удаление заявки 3 пользователем",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9966/users/:userId/requests/:reqId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9966",
+							"path": [
+								"users",
+								":userId",
+								"requests",
+								":reqId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "1",
+									"description": "user id"
+								},
+								{
+									"key": "reqId",
+									"value": "3",
+									"description": "request id"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Авторизация администратора",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:9966/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9966",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Получение списка всех пользователей",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 200 и данные в формате json\", function () {",
+									"    pm.response.to.be.ok;    ",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"const source = pm.collectionVariables.get('response');",
+									"const target = pm.response.json();",
+									"",
+									"pm.test(\"Должен быть найден только один пользователь\", function () {",
+									"    pm.expect(target.length).to.eql(1);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9966/admin/users?from=0&size=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9966",
+							"path": [
+								"admin",
+								"users"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Поиск пользователя по имени/ части имени",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 200 и данные в формате json\", function () {",
+									"    pm.response.to.be.ok;    ",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9966/admin/users/search?name=Roman",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9966",
+							"path": [
+								"admin",
+								"users",
+								"search"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Roman"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Назначение прав оператора пользователю",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 200 и данные в формате json\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"const source = JSON.parse(pm.request.body.raw);",
+									"const target = pm.response.json();",
+									"",
+									"pm.test(\"Пользователь должен содержать поля: id, name, email, role\", function () {",
+									"pm.expect(target).to.have.property('id');",
+									"pm.expect(target).to.have.property('name');",
+									"pm.expect(target).to.have.property('email');",
+									"pm.expect(target).to.have.property('role');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"name\": \"Romans\",\n   \"email\": \"den@gmail.com\",\n   \"role\": \"USER\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9966/admin/users/:userId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9966",
+							"path": [
+								"admin",
+								"users",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "1",
+									"description": "user id"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Operator",
+			"item": [
+				{
+					"name": "Авторизация оператора",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "operator",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "operator",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:9966/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9966",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Просмотр отправленных заявок  конкретного пользователя по его имени с сортировкой от старой к новой",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 200 и данные в формате json\", function () {",
+									"    pm.response.to.be.ok;    ",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"const source = pm.collectionVariables.get('response');",
+									"const target = pm.response.json();",
+									"",
+									"pm.test(\"Должно быть найдено три заявки\", function () {",
+									"    pm.expect(target.length).to.eql(3);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9966/operator/requests/search/new?name=Roman",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9966",
+							"path": [
+								"operator",
+								"requests",
+								"search",
+								"new"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Roman"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Просмотр отправленных заявок  конкретного пользователя по его имени с сортировкой от новой к старой",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 200 и данные в формате json\", function () {",
+									"    pm.response.to.be.ok;    ",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"const source = pm.collectionVariables.get('response');",
+									"const target = pm.response.json();",
+									"",
+									"pm.test(\"Должно быть найдено три заявки\", function () {",
+									"    pm.expect(target.length).to.eql(3);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9966/operator/requests/search/old?name=Roman",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9966",
+							"path": [
+								"operator",
+								"requests",
+								"search",
+								"old"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Roman"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Оператор принимает отправленную заявку",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 200 и данные в формате json\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"const source = JSON.parse(pm.request.body.raw);",
+									"const target = pm.response.json();",
+									"",
+									"pm.test(\"Заявка должна содержать поля: id, name, userMessage, user, state, createdOn\", function () {",
+									"pm.expect(target).to.have.property('id');",
+									"pm.expect(target).to.have.property('name');",
+									"pm.expect(target).to.have.property('userMessage');",
+									"pm.expect(target).to.have.property('user');",
+									"pm.expect(target).to.have.property('state');",
+									"pm.expect(target).to.have.property('createdOn');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"name\": \"new request update\",\n   \"userMessage\": \"new test request new test request\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9966/operator/requests/:reqId?approved=true",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9966",
+							"path": [
+								"operator",
+								"requests",
+								":reqId"
+							],
+							"query": [
+								{
+									"key": "approved",
+									"value": "true"
+								}
+							],
+							"variable": [
+								{
+									"key": "reqId",
+									"value": "1",
+									"description": "request id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Просмотр всех отправленных заявок  с сортировкой от новой к старой",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 200 и данные в формате json\", function () {",
+									"    pm.response.to.be.ok;    ",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"const source = pm.collectionVariables.get('response');",
+									"const target = pm.response.json();",
+									"",
+									"pm.test(\"Должно быть найдено две заявки\", function () {",
+									"    pm.expect(target.length).to.eql(2);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9966/operator/requests/all/new?from=0&size=5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9966",
+							"path": [
+								"operator",
+								"requests",
+								"all",
+								"new"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Просмотр всех отправленных заявок  с сортировкой от старой к новой",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 200 и данные в формате json\", function () {",
+									"    pm.response.to.be.ok;    ",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"const source = pm.collectionVariables.get('response');",
+									"const target = pm.response.json();",
+									"",
+									"pm.test(\"Должно быть найдено две заявки\", function () {",
+									"    pm.expect(target.length).to.eql(2);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9966/operator/requests/all/old?from=0&size=5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9966",
+							"path": [
+								"operator",
+								"requests",
+								"all",
+								"old"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
